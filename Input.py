@@ -11,6 +11,7 @@ class Input:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     return 0
+            # Left mouse button
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     return 1

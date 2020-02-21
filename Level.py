@@ -98,6 +98,7 @@ class Level:
                     # Remove them both
                     self.tileCount.remove(selected[0])
                     self.tileCount.remove(selected[1])
+                    return True
                 # If the two selected tiles are of different types
                 else:
                     # Deselect them both
@@ -108,7 +109,7 @@ class Level:
                 # Deselect all the tiles
                 for i in seleccted:
                     i.selected = False
-
+    
     def render(self, window):
         for i in self.tileCount:
             i.render(window)
