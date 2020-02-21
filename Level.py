@@ -11,6 +11,8 @@ from glob import glob
 
 class Level:
     def __init__(self, file):
+        self.file = file
+
         # Read the tiles locations from the file
         # Decide what type of tiles to create based on how many it found from the file
         # Create the random tiles as specified in the file
@@ -22,7 +24,7 @@ class Level:
             lines = [list(map(int, i.strip().split())) for i in f if i != "\n" and (i+"-")[0] != "#"]
 
         # Read all the different tile types from the tiles folder
-        tileType = glob(".\\tiles\\*")
+        tileType = glob("./tiles/*")
         # Put them into a random order
         random.shuffle(tileType)
         # This will hold all the tiles names
@@ -98,6 +100,8 @@ class Level:
                     # Remove them both
                     self.tileCount.remove(selected[0])
                     self.tileCount.remove(selected[1])
+                    if len(self.tileCount) < 1:
+                        return "levelCleared"
                     return True
                 # If the two selected tiles are of different types
                 else:
@@ -109,6 +113,15 @@ class Level:
                 # Deselect all the tiles
                 for i in seleccted:
                     i.selected = False
+    
+    # Shuffle the tiles
+    def shuffle(self):
+        types = []
+        for i in self.tileCount:
+            types.append(i.type)
+        random.shuffle(types)
+        for i in range(len(types)):
+            self.tileCount[i].setType(types[i])
     
     def render(self, window):
         for i in self.tileCount:

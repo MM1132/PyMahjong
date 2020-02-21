@@ -1,10 +1,11 @@
 import pygame
 
 # Load in the image and set color key to it
-def loadTexture(texture):
+def loadTexture(texture, colorKey = True):
     # Just load in the image from the file and make it's blue corners transparent
     image = pygame.image.load(texture).convert()
-    image.set_colorkey((0, 38, 255))
+    if colorKey:
+        image.set_colorkey((0, 38, 255))
     return image
 
 # Convert the image into darker version

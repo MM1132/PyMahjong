@@ -22,8 +22,18 @@ class Tile:
         
         # Calculate the coordinates that the tile will be rendered at
         self.renderX = self.x * 98 - (self.layer * 17) + 455
-        self.renderY = self.y * 130 - (self.layer * 17) + 77
+        self.renderY = self.y * 130 - (self.layer * 17) + 85
 
+    # This function is used for changing the tiles type when shuffling
+    def setType(self, type):
+        self.type = type
+        self.texture = loadTexture(type)
+        self.texture_dark = makeDark(self.texture)
+
+    def updateRenderCoordinates(self):
+        self.renderX = self.x * 98 - (self.layer * 17) + 455
+        self.renderY = self.y * 130 - (self.layer * 17) + 77
+    
     def render(self, window):
         # Render the tile onto the screen at the calculated coordiantes
         window.blit(self.texture, (self.renderX, self.renderY))
